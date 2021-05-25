@@ -11,12 +11,18 @@
 /node_modules
 /_book
 /build/*
+/test/data/*
+/coverage
+/.nyc_output
+/.history
 
 # TypeScript definitions installed by Typings
 /typings
 
 # Screeps Config
 screeps.json
+.screeps-multimeter.history
+screeps-multimeter.json
 
 # ScreepsServer data from integration tests
 /server
@@ -43,6 +49,7 @@ nbproject
 *.sublime-project
 *.sublime-workspace
 .idea
+.history
 
 # =========================
 # Operating System Files

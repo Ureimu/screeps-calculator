@@ -47,7 +47,10 @@ module.exports = {
     "@typescript-eslint/space-within-parens": ["off", "never"],
     "@typescript-eslint/unified-signatures": "error",
     "arrow-parens": ["off", "as-needed"],
-    camelcase: "error",
+    camelcase: [
+      "error",
+      { "properties": "never" }
+    ],
     complexity: "off",
     "dot-notation": "error",
     "eol-last": "off",
@@ -73,6 +76,8 @@ module.exports = {
         hoist: "all"
       }
     ],
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": ["off"],
     "no-throw-literal": "error",
     "no-trailing-spaces": "off",
     "no-undef-init": "error",
@@ -82,7 +87,9 @@ module.exports = {
     "one-var": ["error", "never"],
     "quote-props": "off",
     radix: "error",
-    "sort-imports": "warn",
+    "sort-imports": "off",
     "spaced-comment": "error",
+    "@typescript-eslint/no-namespace":"off",
+    "@typescript-eslint/prefer-namespace-keyword":"off"
   }
 };

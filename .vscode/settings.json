@@ -6,7 +6,7 @@
         "editor.formatOnSave": true
     },
     "[typescript]": {
-        "editor.formatOnSave": false
+        "editor.formatOnSave": true
     },
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": true
@@ -21,8 +21,62 @@
         ".rpt2_cache/**": true,
         "dist/**": true,
         "node_modules/**": true,
-        "typings/**": true
+        "typings/**": true,
+        "**/.nyc_output": true,
+        "**/coverage": true,
+        "docs/**": true
+    },
+    "files.exclude": {
+        ".history/**": true
     },
     "typescript.tsdk": "./node_modules/typescript/lib",
-    "eslint.enable": true
+    "cSpell.words": [
+        "BODYPART",
+        "Buildable",
+        "COOLDOWN",
+        "Coord",
+        "Grafana",
+        "Iclass",
+        "Ifun",
+        "Inte",
+        "MAPTOOL",
+        "Parens",
+        "REGEN",
+        "Scorpior",
+        "Unlicense",
+        "Ureium's",
+        "bodyparts",
+        "bodysetting",
+        "buble",
+        "crzytrane",
+        "dont",
+        "dynamicmarket",
+        "estree",
+        "lcov",
+        "mincut",
+        "mongodb",
+        "mwcarhit",
+        "mwcarhlt",
+        "nodent",
+        "nuker",
+        "openttd",
+        "pserver",
+        "screepers",
+        "screepsbot",
+        "screepsmod",
+        "simplebot",
+        "splus",
+        "toolbelt",
+        "treemap",
+        "typeof",
+        "zeswarm"
+    ],
+    "mochaExplorer.files": [
+        "dist/test-integration.bundle.js",
+        "dist/test-unit.bundle.js"
+    ],
+    "mochaExplorer.require": [
+        "ts-node/register",
+        "test/setup-node.js"
+    ],
 }

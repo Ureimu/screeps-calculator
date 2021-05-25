@@ -1,0 +1,15 @@
+{
+    "entryPoints": [
+        "./src/creep/body/index.ts",
+        "./src/creep/body/type.ts",
+        "./src/spawn/spawnPool/index.ts",
+        "./src/spawn/spawnPool/type.ts",
+        "./src/creep/group/index.ts",
+        "./src/creep/group/type.ts",
+        "./src/creep/routePlan/index.ts",
+        "./src/creep/routePlan/type.ts"
+    ],
+    "exclude": "**/__test__/*.ts",
+    "out": "./docs",
+    "includes": ["./tutorial"]
+}
