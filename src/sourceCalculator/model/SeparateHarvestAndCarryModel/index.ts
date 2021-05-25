@@ -1,7 +1,7 @@
-import { EntityType, InputEntity } from "sourceCalculator/inits";
-import { BasicStats } from "sourceCalculator/stats/type";
+import { EntityType, InputEntity } from "../../inits";
+import { BasicStats } from "../../stats/type";
 import { SourceCalculatorModel } from "..";
-import { InputData, SourceCalculatorModelResult, Stats } from "../type";
+import { EntityArgs, InputData, SourceCalculatorModelResult, Stats } from "../type";
 import { CarrierData, ContainerData, HarvesterData, ReserverData } from "./type";
 
 type ModelName = "SeparateHarvestAndCarryModel";
@@ -144,6 +144,7 @@ export class SeparateHarvestAndCarryModel extends SourceCalculatorModel<ModelNam
         };
         this.stats = stats;
         return {
+            entityList: this.entityList,
             harvesterData,
             carrierData,
             reserverData,
@@ -182,6 +183,7 @@ export type SeparateHarvestAndCarryModelInputData = {
 };
 
 export interface SeparateHarvestAndCarryModelResult {
+    entityList: EntityArgs<ModelName>;
     harvesterData: HarvesterData;
     carrierData: CarrierData;
     reserverData: ReserverData;

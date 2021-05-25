@@ -1,4 +1,4 @@
-import { BasicStats } from "sourceCalculator/stats/type";
+import { BasicStats } from "../../stats/type";
 
 export interface HarvesterData {
     /**

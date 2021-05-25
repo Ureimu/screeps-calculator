@@ -1,4 +1,4 @@
-import { Entity } from "sourceCalculator/inits";
+import { Entity } from "../inits";
 import { SourceCalculatorModelType } from ".";
 import {
     SeparateHarvestAndCarryModelInputData,

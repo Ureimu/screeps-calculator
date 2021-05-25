@@ -1,3 +1,4 @@
-import { sourceCalculator } from "sourceCalculator";
+import { SeparateHarvestAndCarryModel } from "./sourceCalculator/model/SeparateHarvestAndCarryModel";
+import { sourceCalculator } from "./sourceCalculator";
 
-export { sourceCalculator };
+export { sourceCalculator, SeparateHarvestAndCarryModel };

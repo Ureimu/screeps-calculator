@@ -1,4 +1,4 @@
-import { init, InitFunctionSet } from "sourceCalculator/inits";
+import { init, InitFunctionSet } from "../inits";
 import { SeparateHarvestAndCarryModel } from "./SeparateHarvestAndCarryModel";
 import { EntityArgs, InputData, SourceCalculatorModelResult, Stats } from "./type";
 
