@@ -3,6 +3,7 @@ import { BasicStats } from "../../stats/type";
 import { SourceCalculatorModel } from "..";
 import { EntityArgs, InputData, SourceCalculatorModelResult, Stats } from "../type";
 import { CarrierData, ContainerData, HarvesterData, ReserverData } from "./type";
+import { getMoveTime } from "../utils/getMoveTime";
 
 type ModelName = "SeparateHarvestAndCarryModel";
 export class SeparateHarvestAndCarryModel extends SourceCalculatorModel<ModelName> {
@@ -34,8 +35,8 @@ export class SeparateHarvestAndCarryModel extends SourceCalculatorModel<ModelNam
             inRoundGeneration: {}
         };
         const pathLength = path.outwardsRoomPathLength.road + path.ownedRoomPathLength.road;
-        harvesterData.workTime = CREEP_LIFE_TIME - pathLength * harvester.moveTimePerStep.noLoad.onRoad; // 工作总时间（不包含移动）
-        carrierData.workTime = CREEP_LIFE_TIME - pathLength * carrier.moveTimePerStep.noLoad.onRoad;
+        harvesterData.workTime = CREEP_LIFE_TIME - getMoveTime(harvester, path, "spawn", "toSource", "noLoad"); // 工作总时间（不包含移动）
+        carrierData.workTime = CREEP_LIFE_TIME - getMoveTime(carrier, path, "spawn", "toSource", "noLoad");
         containerData.perDecay.repairTimeCost = Math.ceil(
             container.perDecay.repairEnergyCost / harvester.energyCost.repair
         );
@@ -62,9 +63,10 @@ export class SeparateHarvestAndCarryModel extends SourceCalculatorModel<ModelNam
             carrierData.inRoundCarry.fillTime + carrierData.inRoundCarry.waitForRepairTime
         );
         carrierData.inRoundCarry.transitTime = link.useLink
-            ? path.outwardsRoomPathLength.road *
-              (carrier.moveTimePerStep.noLoad.onRoad + carrier.moveTimePerStep.fullLoad.onRoad)
-            : pathLength * (carrier.moveTimePerStep.noLoad.onRoad + carrier.moveTimePerStep.fullLoad.onRoad);
+            ? getMoveTime(carrier, path, "link", "toSource", "noLoad") +
+              getMoveTime(carrier, path, "link", "toSource", "fullLoad")
+            : getMoveTime(carrier, path, "storage", "toSource", "noLoad") +
+              getMoveTime(carrier, path, "storage", "toSource", "fullLoad");
         carrierData.inRoundCarry.time = Math.max(
             carrierData.inRoundCarry.transitTime,
             carrierData.inRoundCarry.waitTime
@@ -92,10 +94,7 @@ export class SeparateHarvestAndCarryModel extends SourceCalculatorModel<ModelNam
             path.outwardsRoomPathLength.road;
         if (reserver.use === true) {
             reserverData.workTime =
-                CREEP_CLAIM_LIFE_TIME -
-                (path.ownedRoomPathLength.road +
-                    path.reservePathLength.plain * reserver.moveTimePerStep.noLoad.onPlain +
-                    path.reservePathLength.swamp); // 总工作时间（只包括执行reserve动作的时间）
+                CREEP_CLAIM_LIFE_TIME - getMoveTime(reserver, path, "spawn", "toController", "noLoad"); // 总工作时间（只包括执行reserve动作的时间）
             reserverData.reservePoint = Math.min(
                 Math.max(reserverData.workTime * (reserver.body.claim - 1), 0),
                 CONTROLLER_RESERVE_MAX

@@ -1,6 +1,7 @@
 import { Entity } from "../inits";
 import { SourceCalculatorModelType } from ".";
 import {
+    SeparateHarvestAndCarryModel,
     SeparateHarvestAndCarryModelInputData,
     SeparateHarvestAndCarryModelResult,
     SeparateHarvestAndCarryModelStats
@@ -21,3 +22,7 @@ export type SourceCalculatorModelResult<T extends SourceCalculatorModelType> = T
 export type Stats<T extends SourceCalculatorModelType> = T extends "SeparateHarvestAndCarryModel"
     ? SeparateHarvestAndCarryModelStats
     : never;
+
+export const models = {
+    ["SeparateHarvestAndCarryModel"]: SeparateHarvestAndCarryModel
+};

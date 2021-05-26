@@ -1,10 +1,6 @@
 import { init, InitFunctionSet } from "../inits";
 import { SeparateHarvestAndCarryModel } from "./SeparateHarvestAndCarryModel";
-import { EntityArgs, InputData, SourceCalculatorModelResult, Stats } from "./type";
-
-export const models = {
-    ["SeparateHarvestAndCarryModel"]: SeparateHarvestAndCarryModel
-};
+import { EntityArgs, InputData, models, SourceCalculatorModelResult, Stats } from "./type";
 
 export type SourceCalculatorModelType = keyof SourceCalculatorModelSet;
 export type SourceCalculatorModelSet = typeof models;

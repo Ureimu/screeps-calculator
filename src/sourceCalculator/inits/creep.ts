@@ -44,15 +44,20 @@ export function initCreep(...[creep]: [CreepInput]): CreepOutput | EmptyOutput {
         for (const abilityName in boostCoefficientModification) {
             let boostedSum = 0;
             for (const compoundName in creep.boost[bodyName]) {
-                const boostedNumber = (creep.boost[bodyName] as CompoundType<string>)[compoundName];
-                boostedSum += boostedNumber;
-                boostCoefficientModification[abilityName as keyof CreepOutput["ability"]] +=
-                    boostedNumber * BOOSTS[bodyName][compoundName][abilityName];
+                if (BOOSTS[bodyName][compoundName][abilityName]) {
+                    const boostedNumber = (creep.boost[bodyName] as CompoundType<string>)[compoundName];
+                    boostedSum += boostedNumber;
+                    boostCoefficientModification[abilityName as keyof CreepOutput["ability"]] +=
+                        boostedNumber * BOOSTS[bodyName][compoundName][abilityName];
+                    // if (isNaN(boostCoefficientModification[abilityName as keyof CreepOutput["ability"]])) {
+                    //     console.log(`${boostedNumber}*${BOOSTS[bodyName][compoundName][abilityName]}===NaN`);
+                    // }
+                }
             }
             const unBoostedNumber = creepBody[bodyName as BodyPartConstant] - boostedSum;
             boostCoefficientModification[abilityName as keyof CreepOutput["ability"]] += unBoostedNumber;
             boostCoefficientModification[abilityName as keyof CreepOutput["ability"]] /=
-                creepBody[bodyName as BodyPartConstant];
+                creepBody[bodyName as BodyPartConstant] === 0 ? 1 : creepBody[bodyName as BodyPartConstant];
         }
     }
     for (const abilityName in boostCoefficientModification) {
@@ -60,7 +65,9 @@ export function initCreep(...[creep]: [CreepInput]): CreepOutput | EmptyOutput {
             boostCoefficientModification[abilityName as keyof CreepOutput["ability"]] = 1;
         }
     }
-
+    // if (isNaN(creepBody.attack * ATTACK_POWER * boostCoefficientModification.attack)) {
+    //     console.log(`${creepBody.attack}*${ATTACK_POWER}*${boostCoefficientModification.attack}===NaN`);
+    // }
     return {
         use: true,
         body: creepBody,
@@ -83,6 +90,7 @@ export function initCreep(...[creep]: [CreepInput]): CreepOutput | EmptyOutput {
                 onSwamp: Math.ceil(tiredPartValue.fullLoad * 5)
             }
         },
+
         ability: {
             attack: creepBody.attack * ATTACK_POWER * boostCoefficientModification.attack,
             build: creepBody.work * BUILD_POWER * boostCoefficientModification.build,
@@ -127,7 +135,7 @@ interface CreepInput {
 
 type CompoundType<partName extends string | number> = { [compoundName in keyof typeof BOOSTS[partName]]: number };
 
-interface CreepOutput {
+export interface CreepOutput {
     /**
      * 是否使用creep
      *

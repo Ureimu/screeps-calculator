@@ -1,6 +1,6 @@
-import { sourceCalculator } from "sourceCalculator/index";
 import { assert } from "chai";
-import { SeparateHarvestAndCarryModel } from "sourceCalculator/model/SeparateHarvestAndCarryModel";
+import { SeparateHarvestAndCarryModel, sourceCalculator } from "index";
+
 describe("calculator", () => {
     it("should return right number of out", () => {
         assert.isFunction(sourceCalculator);
@@ -31,6 +31,7 @@ describe("calculator", () => {
         });
 
         sourceCalculator(model);
-        console.log(model.entityList.carrier);
+        console.log(model.obtainStats());
+        console.log(model.entityList);
     });
 });
