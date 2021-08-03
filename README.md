@@ -10,6 +10,25 @@ As there are so many ways to mining a source, you could meet really a lot bugs w
 npm install screeps-calculator
 ```
 
+### Settings
+
+if you want use this outside screeps' game environment, use code below to assign game constants to global.
+typescript:
+
+```ts
+import { assignConstants } from "screeps-calculator";
+assignConstants();
+```
+
+javascript:
+
+```js
+const calculator = require("screeps-calculator");
+calculator.assignConstants();
+```
+
+### Run Model
+
 typescript:
 
 ```ts
