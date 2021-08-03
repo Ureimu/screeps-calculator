@@ -7,7 +7,6 @@ import { getMoveTime } from "../utils/getMoveTime";
 
 type ModelName = "SeparateHarvestAndCarryModel";
 export class SeparateHarvestAndCarryModel extends SourceCalculatorModel<ModelName> {
-    private stats: Stats<ModelName> | undefined;
     public constructor(inputArgs: InputData<ModelName>) {
         super(inputArgs);
     }
@@ -34,7 +33,6 @@ export class SeparateHarvestAndCarryModel extends SourceCalculatorModel<ModelNam
             perDecay: {},
             inRoundGeneration: {}
         };
-        const pathLength = path.outwardsRoomPathLength.road + path.ownedRoomPathLength.road;
         harvesterData.workTime = CREEP_LIFE_TIME - getMoveTime(harvester, path, "spawn", "toSource", "noLoad"); // 工作总时间（不包含移动）
         carrierData.workTime = CREEP_LIFE_TIME - getMoveTime(carrier, path, "spawn", "toSource", "noLoad");
         containerData.perDecay.repairTimeCost = Math.ceil(
@@ -91,7 +89,7 @@ export class SeparateHarvestAndCarryModel extends SourceCalculatorModel<ModelNam
                 harvester.body.total +
                 CREEP_LIFE_TIME) /
                 ROAD_DECAY_TIME) *
-            path.outwardsRoomPathLength.road;
+            path.outwardsRoomPathLength.cost;
         if (reserver.use === true) {
             reserverData.workTime =
                 CREEP_CLAIM_LIFE_TIME - getMoveTime(reserver, path, "spawn", "toController", "noLoad"); // 总工作时间（只包括执行reserve动作的时间）
@@ -126,7 +124,7 @@ export class SeparateHarvestAndCarryModel extends SourceCalculatorModel<ModelNam
             harvesterData.spawnTime * (CREEP_LIFE_TIME / harvesterData.workTime) +
                 carrierData.spawnTime * carrierData.maxCarrierNum * (CREEP_LIFE_TIME / carrierData.workTime) +
                 (reserver.use === true ? (reserverData.spawnTime as number) : 0) *
-                    (CREEP_LIFE_TIME / (reserver.use === true ? (reserverData.spawnInterval as number) : 0))
+                    (CREEP_LIFE_TIME / (reserver.use === true ? (reserverData.spawnInterval as number) : 1))
         );
         const energyProfit = Math.round(energyHarvested - energyCost - energyStranded);
         const stats: Stats<ModelName> = {
@@ -142,7 +140,7 @@ export class SeparateHarvestAndCarryModel extends SourceCalculatorModel<ModelNam
             sourceCapacity: source.capacity
         };
         this.stats = stats;
-        return {
+        this.result = {
             entityList: this.entityList,
             harvesterData,
             carrierData,
@@ -150,11 +148,7 @@ export class SeparateHarvestAndCarryModel extends SourceCalculatorModel<ModelNam
             containerData,
             stats
         };
-    }
-    public obtainStats(): Stats<ModelName> {
-        if (!this.stats)
-            throw new Error("Stats not generated. Use method calculateModel() before using method obtainStats().");
-        return this.stats;
+        return this.result;
     }
     public printBeautifiedStats(): string {
         if (!this.stats)

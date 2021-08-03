@@ -1,5 +1,3 @@
-import { BasicStats } from "../../stats/type";
-
 export interface HarvesterData {
     /**
      * creep一生的能量消耗

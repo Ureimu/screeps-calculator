@@ -29,6 +29,12 @@ export interface PathInput {
         road: number;
         swamp: number;
         plain: number;
+        /**
+         * 所有路径总hit等效为全建在平原上的路径数
+         *
+         * @type {number}
+         */
+        cost: number;
     };
     /**
      * 预定路径长度。（一般没有建路）
@@ -39,6 +45,12 @@ export interface PathInput {
         road: number;
         swamp: number;
         plain: number;
+        /**
+         * 所有路径总hit等效为全建在平原上的路径数
+         *
+         * @type {number}
+         */
+        cost: number;
     };
 }
 

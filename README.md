@@ -98,8 +98,8 @@ const model = new SeparateHarvestAndCarryModel({
         data: [
             {
                 ownedRoomPathLength: { plain: 0, swamp: 0, road: 30 },
-                reservePathLength: { plain: 10, swamp: 20, road: 10 },
-                outwardsRoomPathLength: { plain: 0, swamp: 0, road: 30 }
+                reservePathLength: { plain: 10, swamp: 20, road: 10, cost: 15 },
+                outwardsRoomPathLength: { plain: 0, swamp: 0, road: 30, cost: 30 }
             }
         ]
     },
@@ -116,4 +116,4 @@ const result = model.calculateModel();
 console.log(result.stats);
 ```
 
-`model.calculateModel` has the same output as `sourceCalculator(model)` .
+`model.calculateModel()` has the same return value as `sourceCalculator(model)` .

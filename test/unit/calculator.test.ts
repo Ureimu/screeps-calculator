@@ -15,8 +15,8 @@ describe("calculator", () => {
                 data: [
                     {
                         ownedRoomPathLength: { plain: 0, swamp: 0, road: 30 },
-                        reservePathLength: { plain: 10, swamp: 20, road: 10 },
-                        outwardsRoomPathLength: { plain: 0, swamp: 0, road: 30 }
+                        reservePathLength: { plain: 10, swamp: 20, road: 10, cost: 15 },
+                        outwardsRoomPathLength: { plain: 0, swamp: 0, road: 30, cost: 15 }
                     }
                 ]
             },
