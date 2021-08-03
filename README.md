@@ -45,8 +45,8 @@ const model = new SeparateHarvestAndCarryModel({
         data: [
             {
                 ownedRoomPathLength: { plain: 0, swamp: 0, road: 30 },
-                reservePathLength: { plain: 10, swamp: 20, road: 10 },
-                outwardsRoomPathLength: { plain: 0, swamp: 0, road: 30 }
+                reservePathLength: { plain: 10, swamp: 20, road: 10, cost: 30 },
+                outwardsRoomPathLength: { plain: 0, swamp: 0, road: 30, cost: 30 }
             }
         ]
     },
@@ -79,8 +79,8 @@ const model = new calculator.SeparateHarvestAndCarryModel({
         data: [
             {
                 ownedRoomPathLength: { plain: 0, swamp: 0, road: 30 },
-                reservePathLength: { plain: 10, swamp: 20, road: 10 },
-                outwardsRoomPathLength: { plain: 0, swamp: 0, road: 30 }
+                reservePathLength: { plain: 10, swamp: 20, road: 10, cost: 30 },
+                outwardsRoomPathLength: { plain: 0, swamp: 0, road: 30, cost: 30 }
             }
         ]
     },
@@ -117,7 +117,7 @@ const model = new SeparateHarvestAndCarryModel({
         data: [
             {
                 ownedRoomPathLength: { plain: 0, swamp: 0, road: 30 },
-                reservePathLength: { plain: 10, swamp: 20, road: 10, cost: 15 },
+                reservePathLength: { plain: 10, swamp: 20, road: 10, cost: 30 },
                 outwardsRoomPathLength: { plain: 0, swamp: 0, road: 30, cost: 30 }
             }
         ]
