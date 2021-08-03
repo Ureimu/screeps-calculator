@@ -12,7 +12,7 @@ npm install screeps-calculator
 
 ### Settings
 
-if you want use this outside screeps' game environment, use code below to assign game constants to global.
+if you want to use screeps-calculator outside screeps' game environment, use code below to assign game constants to global.
 typescript:
 
 ```ts
