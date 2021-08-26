@@ -29,12 +29,12 @@ const initFunctionSet: InitFunctionSet = {
 };
 
 export function init<T extends EntityType>(inputEntity: InputEntity<T>): Entity<T> {
-    return initFunctionSet[inputEntity.type](...(inputEntity.data as any)) as Entity<T>; // TODO  inputEntity.data的类型是什么？
+    return initFunctionSet[inputEntity.type](inputEntity.data as any) as Entity<T>; // TODO  inputEntity.data的类型是什么？
 }
 
 export type Entity<T extends EntityType> = ReturnType<InitFunctionSet[T]>;
 
-export type InputEntityData<T extends EntityType> = Parameters<InitFunctionSet[T]>;
+export type InputEntityData<T extends EntityType> = Parameters<InitFunctionSet[T]>[0];
 
 export interface InputEntity<T extends EntityType> {
     type: T;

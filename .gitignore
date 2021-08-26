@@ -15,7 +15,7 @@
 /coverage
 /.nyc_output
 /.history
-
+/coverage-ts
 # TypeScript definitions installed by Typings
 /typings
 
